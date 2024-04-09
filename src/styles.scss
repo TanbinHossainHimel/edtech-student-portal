@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'bengali-font';
+  src: url('assets/fonts/noto-serif-bengali.ttf') format('truetype'),
+  url('assets/fonts/noto-serif-bengali.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.bengali-font{
+  font-family: 'bengali-font', sans-serif;
+}
