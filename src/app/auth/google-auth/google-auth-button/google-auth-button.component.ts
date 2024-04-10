@@ -1,15 +1,11 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {NzIconDirective} from "ng-zorro-antd/icon";
 import {NgOptimizedImage} from "@angular/common";
-import {NzButtonComponent} from "ng-zorro-antd/button";
 
 @Component({
   selector: 'app-google-auth-button',
   standalone: true,
   imports: [
-    NzIconDirective,
     NgOptimizedImage,
-    NzButtonComponent
   ],
   templateUrl: './google-auth-button.component.html',
   styleUrl: './google-auth-button.component.scss'
