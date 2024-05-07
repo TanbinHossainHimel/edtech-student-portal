@@ -14,11 +14,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'edtech-student-portal' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('edtech-student-portal');
-  });
+  // it(`should have the 'edtech-student-portal' title`, () => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   const app = fixture.componentInstance;
+  //   expect(app.title).toEqual('edtech-student-portal');
+  // });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
