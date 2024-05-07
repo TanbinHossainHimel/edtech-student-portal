@@ -1,0 +1,54 @@
+name: Deployment
+
+env:
+  APP_NAME: "test-ci-cd-angular"
+  PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+  HOST_NAME: ${{secrets.LIGHTSAIL_IP}}
+  USER_NAME: ${{secrets.LIGHTSAIL_USERNAME}}
+  SERVER_ROOT_DIRECTORY: "/var/www/html/student-portal"
+  BASE_HREF: "/student-portal/"
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Angular
+        run: npm install -g @angular/cli
+
+      - name: Install Project Dependencies
+        run: npm install
+
+      - name: Build Angular project
+        run: ng build --base-href=${{env.BASE_HREF}}
+
+      - name: Create Zip
+        run: |
+          cd ./dist/${{env.APP_NAME}}/browser/
+          zip -r ${{env.APP_NAME}} .
+
+      - name: Deploy to Server
+        run: |
+          echo "${{env.PRIVATE_KEY}}" > private_key && chmod 600 private_key
+          scp -o StrictHostKeyChecking=no -i private_key ./dist/${{env.APP_NAME}}/browser/${{env.APP_NAME}}.zip ${{env.USER_NAME}}@${{env.HOST_NAME}}:${{env.SERVER_ROOT_DIRECTORY}}
+          ssh -o StrictHostKeyChecking=no -i private_key ${{env.USER_NAME}}@${{env.HOST_NAME}} '
+            cd ${{env.SERVER_ROOT_DIRECTORY}}
+            sudo unzip -o ${{env.APP_NAME}}.zip
+            sudo rm ${{env.APP_NAME}}.zip
+            sudo systemctl restart nginx
+          '
