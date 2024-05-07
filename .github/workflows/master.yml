@@ -1,7 +1,7 @@
 name: Deployment
 
 env:
-  APP_NAME: "test-ci-cd-angular"
+  APP_NAME: "edtech-student-portal"
   PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
   HOST_NAME: ${{secrets.LIGHTSAIL_IP}}
   USER_NAME: ${{secrets.LIGHTSAIL_USERNAME}}
