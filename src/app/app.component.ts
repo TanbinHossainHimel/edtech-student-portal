@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 import {NzIconModule} from 'ng-zorro-antd/icon';
@@ -6,6 +6,8 @@ import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {environment} from "../environments/environment";
 import {GoogleAuthComponent} from "./auth/google-auth/google-auth.component";
+import {EncryptDecryptService} from "./services/encrypt-decrypt.service";
+import {LocalStorageService} from "./services/local-storage.service";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,15 @@ import {GoogleAuthComponent} from "./auth/google-auth/google-auth.component";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isProduction: boolean = environment.isProduction;
+
+  constructor(private encryptDecryptService: EncryptDecryptService, private localStorageService: LocalStorageService) {
+  }
+
+  ngOnInit() {
+    this.localStorageService.setData('name', 'Himel');
+    const name = this.localStorageService.getDataByKey('name');
+    console.log('name:', name);
+  }
 }
