@@ -16,17 +16,17 @@ export class LocalStorageService {
     localStorage.setItem(encryptedKey, encryptedData);
   }
 
-  public getDataByKey(key: string): string {
-    const encryptedKey = this.encryptDecryptService.decrypt(key);
+  public getData(key: string): string {
+    const encryptedKey = this.encryptDecryptService.encrypt(key);
     const encryptedData = localStorage.getItem(encryptedKey);
     if (!encryptedData) {
       return '';
     }
-    return this.encryptDecryptService.decrypt(encryptedData).toString();
+    return this.encryptDecryptService.decrypt(encryptedData);
   }
 
-  public removeDataByKey(key: string) {
-    const encryptedKey = this.encryptDecryptService.decrypt(key);
+  public removeData(key: string) {
+    const encryptedKey = this.encryptDecryptService.encrypt(key);
     localStorage.removeItem(encryptedKey);
   }
 

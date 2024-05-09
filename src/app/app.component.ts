@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 import {NzIconModule} from 'ng-zorro-antd/icon';
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.localStorageService.setData('name', 'Himel');
-    const name = this.localStorageService.getDataByKey('name');
+    const name = this.localStorageService.getData('name');
     console.log('name:', name);
   }
 }
