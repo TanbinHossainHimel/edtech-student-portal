@@ -1,19 +1,19 @@
-import {Component} from '@angular/core';
-import {GoogleAuthButtonComponent} from "./google-auth-button/google-auth-button.component";
+import { Component } from '@angular/core';
 import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {GoogleAuthButtonComponent} from "./google-auth-button/google-auth-button.component";
 import {NgOptimizedImage} from "@angular/common";
 
 @Component({
-  selector: 'app-google-auth',
+  selector: 'app-auth',
   standalone: true,
   imports: [
     GoogleAuthButtonComponent,
     NgOptimizedImage
   ],
-  templateUrl: './google-auth.component.html',
-  styleUrl: './google-auth.component.scss'
+  templateUrl: './auth.component.html',
+  styleUrl: './auth.component.scss'
 })
-export class GoogleAuthComponent {
+export class AuthComponent {
   constructor(private socialAuthService: SocialAuthService) {
     this.socialAuthService.authState.subscribe(socialUser => {
       console.log(socialUser);
@@ -23,5 +23,4 @@ export class GoogleAuthComponent {
   googleSignIn(googleWrapper: any) {
     googleWrapper.click();
   }
-
 }

@@ -5,14 +5,13 @@ import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {environment} from "../environments/environment";
-import {GoogleAuthComponent} from "./auth/google-auth/google-auth.component";
 import {EncryptDecryptService} from "./services/encrypt-decrypt.service";
 import {LocalStorageService} from "./services/local-storage.service";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule, GoogleAuthComponent],
+  imports: [CommonModule, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
