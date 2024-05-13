@@ -18,4 +18,9 @@ export class AuthService {
   get isUserAuthorized() {
     return !!this.localStorageService.getData('access-token');
   }
+
+
+  signOutUser(){
+    this.localStorageService.removeData('access-token');
+  }
 }
