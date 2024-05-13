@@ -5,8 +5,6 @@ import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {environment} from "../environments/environment";
-import {EncryptDecryptService} from "./services/encrypt-decrypt.service";
-import {LocalStorageService} from "./services/local-storage.service";
 
 @Component({
   selector: 'app-root',
@@ -18,12 +16,9 @@ import {LocalStorageService} from "./services/local-storage.service";
 export class AppComponent implements OnInit {
   isProduction: boolean = environment.isProduction;
 
-  constructor(private encryptDecryptService: EncryptDecryptService, private localStorageService: LocalStorageService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.localStorageService.setData('name', 'Himel');
-    const name = this.localStorageService.getData('name');
-    console.log('name:', name);
   }
 }

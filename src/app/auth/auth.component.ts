@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {SocialAuthService} from "@abacritt/angularx-social-login";
 import {GoogleAuthButtonComponent} from "./google-auth-button/google-auth-button.component";
 import {NgOptimizedImage} from "@angular/common";
+import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-auth',
@@ -14,9 +15,10 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
-  constructor(private socialAuthService: SocialAuthService) {
+  constructor(private socialAuthService: SocialAuthService, private authService: AuthService) {
     this.socialAuthService.authState.subscribe(socialUser => {
       console.log(socialUser);
+      this.authService.signInWithGoogle();
     })
   }
 
