@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, WritableSignal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 import {NzIconModule} from 'ng-zorro-antd/icon';
@@ -17,7 +17,7 @@ import {AuthService} from "./services/auth.service";
 })
 export class AppComponent implements OnInit {
   isProduction: boolean = environment.isProduction;
-  isUserAuthorized: any;
+  isUserAuthorized!: WritableSignal<boolean>;
 
   constructor(private authService: AuthService) {
   }
