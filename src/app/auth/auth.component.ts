@@ -20,10 +20,10 @@ export class AuthComponent implements OnDestroy {
 
   constructor(private socialAuthService: SocialAuthService, private authService: AuthService) {
     this.socialAuthStateSubscription = this.socialAuthService.authState.subscribe((socialUser: SocialUser) => {
-      console.log(socialUser);
-      if (socialUser) {
-        this.authService.signInUserWithGoogle(socialUser);
+      if (!socialUser) {
+        return;
       }
+      this.authService.signInUserWithGoogle(socialUser);
     });
   }
 
