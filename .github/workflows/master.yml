@@ -48,7 +48,7 @@ jobs:
           scp -o StrictHostKeyChecking=no -i private_key ./dist/${{env.APP_NAME}}/browser/${{env.APP_NAME}}.zip ${{env.USER_NAME}}@${{env.HOST_NAME}}:${{env.SERVER_ROOT_DIRECTORY}}
           ssh -o StrictHostKeyChecking=no -i private_key ${{env.USER_NAME}}@${{env.HOST_NAME}} '
             cd ${{env.SERVER_ROOT_DIRECTORY}}
-            sudo rm *.html *.ico styles-*.css polyfills-*.js main-*.js
+            sudo rm -r *
             sudo unzip -o ${{env.APP_NAME}}.zip
             sudo rm ${{env.APP_NAME}}.zip
             sudo systemctl restart nginx
