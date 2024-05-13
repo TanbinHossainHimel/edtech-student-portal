@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {Component} from '@angular/core';
+import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 import {GoogleAuthButtonComponent} from "./google-auth-button/google-auth-button.component";
 import {NgOptimizedImage} from "@angular/common";
 import {AuthService} from "../services/auth.service";
@@ -16,9 +16,8 @@ import {AuthService} from "../services/auth.service";
 })
 export class AuthComponent {
   constructor(private socialAuthService: SocialAuthService, private authService: AuthService) {
-    this.socialAuthService.authState.subscribe(socialUser => {
-      console.log(socialUser);
-      this.authService.signInWithGoogle();
+    this.socialAuthService.authState.subscribe((socialUser: SocialUser) => {
+      this.authService.signInUserWithGoogle(socialUser);
     })
   }
 
