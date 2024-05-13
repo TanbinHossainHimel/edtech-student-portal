@@ -1,28 +1,34 @@
-import {Injectable} from '@angular/core';
+import {Injectable, signal, WritableSignal} from '@angular/core';
 import {LocalStorageService} from "./local-storage.service";
 import {Router} from "@angular/router";
-import {SocialUser} from "@abacritt/angularx-social-login";
+import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  isUserAuthorized: WritableSignal<boolean> = signal(this.isAccessTokenAvailable());
 
-  constructor(private localStorageService: LocalStorageService, private router: Router) {
+  constructor(private localStorageService: LocalStorageService, private router: Router, private socialAuthService: SocialAuthService) {
   }
 
   signInUserWithGoogle(socialUser: SocialUser) {
     console.log(socialUser);
     this.localStorageService.setData('access-token', 'himel');
+    this.isUserAuthorized.update(() => this.isAccessTokenAvailable());
     this.router.navigate(['dashboard']).then();
-  }
-
-  get isUserAuthorized() {
-    return !!this.localStorageService.getData('access-token');
   }
 
 
   signOutUser() {
-    this.localStorageService.removeData('access-token');
+    this.socialAuthService.signOut().then(() => {
+      this.localStorageService.removeData('access-token');
+      this.isUserAuthorized.update(() => this.isAccessTokenAvailable());
+      this.router.navigate(['auth']).then();
+    });
+  }
+
+  isAccessTokenAvailable() {
+    return !!this.localStorageService.getData('access-token');
   }
 }

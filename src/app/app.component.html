@@ -1,3 +1,37 @@
 <div class="bengali-font bg-stone-50 h-[100dvh] w-[100dvw] select-none">
-  <router-outlet/>
+  @if (!isUserAuthorized()) {
+    <router-outlet/>
+  } @else {
+    <nz-layout>
+      <nz-sider class="absolute h-[100dvh] lg:relative" nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0">
+        <div class="logo"></div>
+        <ul nz-menu nzTheme="dark" nzMode="inline">
+          <li nz-menu-item>
+            <span nz-icon nzType="user"></span>
+            <span>nav 1</span>
+          </li>
+          <li nz-menu-item>
+            <span nz-icon nzType="video-camera"></span>
+            <span>nav 2</span>
+          </li>
+          <li nz-menu-item>
+            <span nz-icon nzType="upload"></span>
+            <span>nav 3</span>
+          </li>
+          <li nz-menu-item>
+            <span nz-icon nzType="user"></span>
+            <span>nav 4</span>
+          </li>
+        </ul>
+      </nz-sider>
+      <nz-layout>
+        <app-header/>
+        <div class="h-[calc(100dvh-70px)]">
+          <router-outlet/>
+        </div>
+        <div>
+        </div>
+      </nz-layout>
+    </nz-layout>
+  }
 </div>
