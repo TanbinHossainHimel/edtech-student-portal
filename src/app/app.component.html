@@ -5,7 +5,8 @@
     <nz-layout>
       <nz-sider class="absolute h-[100dvh] lg:relative z-50 bg-white shadow" nzCollapsible nzBreakpoint="lg"
                 [nzCollapsedWidth]="0" [(nzCollapsed)]="isCollapsed" [nzWidth]="250" [nzTrigger]="null">
-        <div class="w-full h-[200px] flex items-center justify-center border-b shadow-[#e63f66_0px_-25px_36px_-28px_inset]">
+        <div
+          class="w-full h-[200px] flex items-center justify-center border-b shadow-[#e63f66_0px_-25px_36px_-28px_inset]">
           <div class="flex flex-col items-center gap-1">
             <nz-avatar [nzSize]="64" nzIcon="user"></nz-avatar>
             <div class="font-medium">Md Tanbin Hossain Himel</div>
@@ -32,6 +33,8 @@
         </ul>
       </nz-sider>
       <nz-layout>
+        <div *ngIf="!isCollapsed" class="absolute lg:hidden h-[100dvh] w-[100dvw] bg-black opacity-50 z-[2]"
+             (click)="isCollapsed = true"></div>
         <app-header>
              <span
                class="text-3xl cursor-pointer"
