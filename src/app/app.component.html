@@ -3,9 +3,16 @@
     <router-outlet/>
   } @else {
     <nz-layout>
-      <nz-sider class="absolute h-[100dvh] lg:relative z-50" nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0">
-        <div class="logo"></div>
-        <ul nz-menu nzTheme="dark" nzMode="inline">
+      <nz-sider class="absolute h-[100dvh] lg:relative z-50 bg-white shadow" nzCollapsible nzBreakpoint="lg"
+                [nzCollapsedWidth]="0" [(nzCollapsed)]="isCollapsed" [nzWidth]="250" [nzTrigger]="null">
+        <div class="w-full h-[150px] flex items-center justify-center border-b">
+          <div class="flex flex-col items-center gap-1">
+            <nz-avatar [nzSize]="64" nzIcon="user"></nz-avatar>
+            <div class="font-medium">Md Tanbin Hossain Himel</div>
+            <div class="font-light text-xs">{{ 'tanbin.himel@gmail.com' }}</div>
+          </div>
+        </div>
+        <ul nz-menu nzTheme="light" nzMode="inline" class="bg-transparent">
           <li nz-menu-item>
             <span nz-icon nzType="user"></span>
             <span>Profile</span>
@@ -25,7 +32,14 @@
         </ul>
       </nz-sider>
       <nz-layout>
-        <app-header/>
+        <app-header>
+             <span
+               class="text-3xl cursor-pointer"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+               (click)="isCollapsed = !isCollapsed"
+             ></span>
+        </app-header>
         <div class="h-[calc(100dvh-70px)]">
           <router-outlet/>
         </div>
