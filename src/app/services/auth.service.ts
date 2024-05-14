@@ -21,11 +21,10 @@ export class AuthService {
 
 
   signOutUser() {
-    this.socialAuthService.signOut().then(() => {
-      this.localStorageService.removeData('access-token');
-      this.isUserAuthorized.update(() => this.isAccessTokenAvailable());
-      this.router.navigate(['auth']).then();
-    });
+    this.localStorageService.removeData('access-token');
+    this.isUserAuthorized.update(() => this.isAccessTokenAvailable());
+    this.router.navigate(['auth']).then();
+    this.socialAuthService.signOut().then();
   }
 
   isAccessTokenAvailable() {
