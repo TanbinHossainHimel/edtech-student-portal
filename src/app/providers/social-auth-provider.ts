@@ -10,7 +10,8 @@ export const socialAuth: Provider = {
       {
         id: GoogleLoginProvider.PROVIDER_ID,
         provider: new GoogleLoginProvider(
-          environment.googleId
+          environment.googleId,
+          {oneTapEnabled: false, prompt: 'consent'}
         )
       }
     ]
