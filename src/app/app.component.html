@@ -33,8 +33,10 @@
         </ul>
       </nz-sider>
       <nz-layout>
-        <div *ngIf="!isCollapsed" class="absolute lg:hidden h-[100dvh] w-[100dvw] bg-black opacity-50 z-[2]"
-             (click)="isCollapsed = true"></div>
+        @if (!isCollapsed) {
+          <div class="absolute lg:hidden h-[100dvh] w-[100dvw] bg-black opacity-50 z-[2]"
+               (click)="isCollapsed = true"></div>
+        }
         <app-header>
              <span
                class="text-3xl cursor-pointer"
