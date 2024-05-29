@@ -14,21 +14,21 @@
           </div>
         </div>
         <ul nz-menu nzTheme="light" nzMode="inline" class="bg-transparent">
-          <li nz-menu-item>
+          <li nz-menu-item [nzMatchRouter]="true">
             <span nz-icon nzType="user"></span>
-            <span>Dashboard</span>
+            <a class="ps-2.5" [routerLink]="['/', 'dashboard']">Dashboard</a>
           </li>
-          <li nz-menu-item>
+          <li nz-menu-item [nzMatchRouter]="true">
             <span nz-icon nzType="user"></span>
-            <span>My Courses</span>
+            <a class="ps-2.5" [routerLink]="['/', 'my-courses']">My Courses</a>
+          </li>
+          <li nz-menu-item [nzMatchRouter]="true">
+            <span nz-icon nzType="upload"></span>
+            <a class="ps-2.5" [routerLink]="['/', 'exam']">Exam</a>
           </li>
           <li nz-menu-item>
             <span nz-icon nzType="user"></span>
             <span>Profile</span>
-          </li>
-          <li nz-menu-item>
-            <span nz-icon nzType="upload"></span>
-            <span>Exam</span>
           </li>
           <li nz-menu-item>
             <span nz-icon nzType="video-camera"></span>
