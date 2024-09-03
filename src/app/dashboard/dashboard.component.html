@@ -1,7 +1,9 @@
-<div class="flex items-center justify-center h-full">
-  <div class="flex flex-col items-center gap-3">
-    <div class="text-3xl font-medium">Dashboard works!</div>
-    <img ngSrc="assets/icons/icon-google.svg" alt="" height="24" width="24">
+<div class="md:rounded">
+  <div class="rounded grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-3 overflow-auto scroll-hidden h-full">
+    @for (course of courses; track course.course_id) {
+      <app-course-card/>
+    }
     <button nz-button (click)="onClickSignOut()">Sign out</button>
   </div>
+
 </div>

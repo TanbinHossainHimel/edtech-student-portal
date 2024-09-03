@@ -1,7 +1,13 @@
 @font-face {
-  font-family: 'bengali-font';
-  src: url('assets/fonts/noto-serif-bengali.ttf') format('truetype'),
-  url('assets/fonts/noto-serif-bengali.ttf') format('truetype');
+  font-family: 'lexend';
+  src: url('assets/font/Lexend.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'noto-sans-bengali';
+  src: url('assets/font/NotoSansBengali.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,3 +21,10 @@
 @import "scss/bengali-font";
 @import "scss/button-primary-outline";
 @import "scss/ant-svg-icon";
+@import "scss/scroll-hidden";
+
+@layer base {
+  body {
+    font-family: lexend, noto-sans-bengali, sans-serif;
+  }
+}
