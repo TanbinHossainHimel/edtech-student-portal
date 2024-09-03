@@ -28,7 +28,6 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.auth$.pipe(
-      tap(console.log),
       shareReplay(),
       takeUntil(this.unsubscribe$),
     ).subscribe();
