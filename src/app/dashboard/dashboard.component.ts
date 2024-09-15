@@ -19,5 +19,5 @@ import { CourseService } from '../services/course.service';
 })
 export class DashboardComponent {
   private courseService = inject(CourseService);
-  courses$ = this.courseService.getCourses();
+  courses$ = this.courseService.findAll();
 }

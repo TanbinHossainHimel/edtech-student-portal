@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Course} from "../model/course.model";
@@ -7,10 +7,13 @@ import {Course} from "../model/course.model";
   providedIn: 'root'
 })
 export class CourseService {
+  private http: HttpClient = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
-
-  getCourses(){
+  findAll() {
     return this.http.get<Partial<Course>[]>(`${environment.apiUrl}/course`);
+  }
+
+  findOne(id: number) {
+    return this.http.get<Partial<Course>>(`${environment.apiUrl}/course/${id}`);
   }
 }

@@ -1,1 +1,8 @@
-<p>course-details works!</p>
+@if (course$ | async; as course) {
+  <div>
+    <div>{{course.id}}</div>
+    <div>{{course.title}}</div>
+    <div>{{course.description}}</div>
+    <div>{{course.price}}</div>
+  </div>
+}
