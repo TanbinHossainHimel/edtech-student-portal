@@ -1,8 +1,44 @@
-@if (course$ | async; as course) {
-  <div>
-    <div>{{course.id}}</div>
-    <div>{{course.title}}</div>
-    <div>{{course.description}}</div>
-    <div>{{course.price}}</div>
+<!--@if (course$ | async; as course) {-->
+<!--  <div>-->
+<!--    <div>{{course.id}}</div>-->
+<!--    <div>{{course.title}}</div>-->
+<!--    <div>{{course.description}}</div>-->
+<!--    <div>{{course.price}}</div>-->
+<!--  </div>-->
+<!--}-->
+<div class="space-y-5">
+
+  <div class="card space-y-3">
+
+    <h1>Title</h1>
+
+    <article>Description</article>
+
+    <p>Teacher: Md. Tanbin Hossain Himel</p>
+
+    <p>Price: 100 tk</p>
+
   </div>
-}
+
+
+  <div class="card space-y-3">
+
+    <h2>Module Name</h2>
+
+<!--    <article>Description</article>-->
+
+    @for (i of [0, 1, 2]; track i){
+
+      <div>
+
+        <h3>Content Name</h3>
+
+<!--        <article>Content Description</article>-->
+
+      </div>
+
+    }
+
+  </div>
+
+</div>

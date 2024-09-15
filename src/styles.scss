@@ -28,3 +28,9 @@
     font-family: lexend, noto-sans-bengali, sans-serif;
   }
 }
+
+@layer components {
+  .card {
+    @apply bg-white p-5 rounded;
+  }
+}
