@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import {Component, inject} from '@angular/core';
+import {AsyncPipe, NgOptimizedImage} from "@angular/common";
 import {NzButtonComponent} from "ng-zorro-antd/button";
 import {AuthService} from "../services/auth.service";
 import {CourseCardComponent} from "./course-card/course-card.component";
+import { CourseService } from '../services/course.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,33 +11,13 @@ import {CourseCardComponent} from "./course-card/course-card.component";
   imports: [
     NgOptimizedImage,
     NzButtonComponent,
-    CourseCardComponent
+    CourseCardComponent,
+    AsyncPipe
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent {
-  courses: Course[] = [
-    {course_id: 1, course_name: 'Quantum Physics'},
-    {course_id: 1, course_name: 'Quantum Physics'},
-    {course_id: 1, course_name: 'Quantum Physics'},
-    {course_id: 1, course_name: 'Quantum Physics'},
-    {course_id: 1, course_name: 'Quantum Physics'},
-    {course_id: 1, course_name: 'Quantum Physics'},
-    {course_id: 1, course_name: 'Quantum Physics'},
-  ];
-
-  constructor(private authService: AuthService) {
-  }
-
-  onClickSignOut() {
-    this.authService.signOutUser();
-  }
+  private courseService = inject(CourseService);
+  courses$ = this.courseService.getCourses();
 }
-
-interface Course {
-  course_id: number;
-  course_name: string;
-
-}
-

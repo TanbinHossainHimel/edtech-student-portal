@@ -1,9 +1,8 @@
 <div class="md:rounded">
   <div class="rounded grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-3 overflow-auto scroll-hidden h-full">
-    @for (course of courses; track course.course_id) {
-      <app-course-card/>
+    @for (course of courses$ | async; track course.id) {
+      <app-course-card [course]="course"/>
     }
-    <button nz-button (click)="onClickSignOut()">Sign out</button>
   </div>
 
 </div>

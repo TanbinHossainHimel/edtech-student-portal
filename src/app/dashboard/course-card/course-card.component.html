@@ -1,12 +1,9 @@
-<div class="m-2">
-<nz-ribbon [nzText]="'Best Seller'" [nzPlacement]="'end'">
-  <div class="flex flex-col justify-center rounded-lg shadow-lg bg-white">
-    <div class="w-full h-[150px] bg-stone-300 rounded-t-lg"></div>
-    <div class="p-2">
-      <div class="text-2xl">Quantum Physics</div>
-      <div>Md Tanbin Hossain Himel</div>
-      <div>Class 10</div>
-    </div>
+<a class="flex flex-col justify-center rounded-lg shadow-lg bg-white" [routerLink]="['/', 'course', course.id]">
+  <div class="w-full h-[150px] bg-stone-300 rounded-t-lg"></div>
+  <div class="p-2">
+    <div class="text-2xl">{{course.title}}</div>
+    <div>{{course.teacher?.user?.name}}</div>
+    <div>Price: {{course.price}}</div>
+    <div>Discount: {{course.discount}}</div>
   </div>
-</nz-ribbon>
-</div>
+</a>
