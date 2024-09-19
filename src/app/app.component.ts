@@ -19,7 +19,7 @@ import {NzAvatarComponent} from "ng-zorro-antd/avatar";
 export class AppComponent implements OnInit {
   isProduction: boolean = environment.isProduction;
   isUserAuthorized!: WritableSignal<boolean>;
-  isCollapsed: boolean = false;
+  isCollapsed: boolean = true;
 
   constructor(private authService: AuthService) {
   }

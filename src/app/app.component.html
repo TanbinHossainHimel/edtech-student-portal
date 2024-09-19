@@ -1,64 +1,64 @@
-<div class="bg-stone-50 h-[100dvh] w-[100dvw] select-none">
-  @if (!isUserAuthorized()) {
-    <router-outlet/>
-  } @else {
-    <nz-layout>
-      <nz-sider class="absolute h-[100dvh] lg:relative z-50 bg-white shadow" nzCollapsible nzBreakpoint="lg"
-                [nzCollapsedWidth]="0" [(nzCollapsed)]="isCollapsed" [nzWidth]="250" [nzTrigger]="null">
-        <div
-          class="w-full h-[200px] flex items-center justify-center border-b bg-stone-50">
-          <div class="flex flex-col items-center gap-1">
-            <nz-avatar [nzSize]="64" nzIcon="user"></nz-avatar>
-            <div class="font-medium">Md Tanbin Hossain Himel</div>
-            <div class="font-light text-xs">{{ 'tanbin.himel@gmail.com' }}</div>
-          </div>
-        </div>
-        <ul nz-menu nzTheme="light" nzMode="inline" class="bg-transparent">
-          <li nz-menu-item [nzMatchRouter]="true">
-            <span nz-icon nzType="user"></span>
-            <a class="ps-2.5" [routerLink]="['/', 'dashboard']">Dashboard</a>
-          </li>
-          <li nz-menu-item [nzMatchRouter]="true">
-            <span nz-icon nzType="user"></span>
-            <a class="ps-2.5" [routerLink]="['/', 'my-courses']">My Courses</a>
-          </li>
-          <li nz-menu-item [nzMatchRouter]="true">
-            <span nz-icon nzType="upload"></span>
-            <a class="ps-2.5" [routerLink]="['/', 'exam']">Exam</a>
-          </li>
-          <li nz-menu-item>
-            <span nz-icon nzType="user"></span>
-            <span>Profile</span>
-          </li>
-          <li nz-menu-item>
-            <span nz-icon nzType="video-camera"></span>
-            <span>Live</span>
-          </li>
-          <li nz-menu-item>
-            <span nz-icon nzType="user"></span>
-            <span>Log out</span>
-          </li>
-        </ul>
-      </nz-sider>
-      <nz-layout>
-        @if (!isCollapsed) {
-          <div class="absolute lg:hidden h-[100dvh] w-[100dvw] bg-black opacity-50 z-[2]"
-               (click)="isCollapsed = true"></div>
-        }
-        <app-header>
+<nz-layout>
+  <nz-sider class="absolute h-[100dvh] z-50 bg-white shadow" nzCollapsible
+            [nzCollapsedWidth]="0" [(nzCollapsed)]="isCollapsed" [nzWidth]="250" [nzTrigger]="null">
+    <div
+      class="w-full h-[200px] flex items-center justify-center border-b bg-stone-50">
+      <div class="flex flex-col items-center gap-1">
+        <nz-avatar [nzSize]="64" nzIcon="user"></nz-avatar>
+        <div class="font-medium">Md Tanbin Hossain Himel</div>
+        <div class="font-light text-xs">{{ 'tanbin.himel@gmail.com' }}</div>
+      </div>
+    </div>
+    <ul nz-menu nzTheme="light" nzMode="inline" class="bg-transparent">
+      <li nz-menu-item [nzMatchRouter]="true">
+        <span nz-icon nzType="user"></span>
+        <a class="ps-2.5" [routerLink]="['/', 'dashboard']">Dashboard</a>
+      </li>
+      <li nz-menu-item [nzMatchRouter]="true">
+        <span nz-icon nzType="user"></span>
+        <a class="ps-2.5" [routerLink]="['/', 'my-courses']">My Courses</a>
+      </li>
+      <li nz-menu-item [nzMatchRouter]="true">
+        <span nz-icon nzType="upload"></span>
+        <a class="ps-2.5" [routerLink]="['/', 'exam']">Exam</a>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="user"></span>
+        <span>Profile</span>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="video-camera"></span>
+        <span>Live</span>
+      </li>
+      <li nz-menu-item>
+        <span nz-icon nzType="user"></span>
+        <span>Log out</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    @if (!isCollapsed) {
+
+      <div class="absolute h-[100dvh] w-[100dvw] bg-black opacity-50 z-[2]"
+           (click)="isCollapsed = true">
+      </div>
+
+    }
+
+    <app-header>
              <span
                class="text-3xl cursor-pointer"
                nz-icon
                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
                (click)="isCollapsed = !isCollapsed"
              ></span>
-        </app-header>
-        <div class="h-[calc(100dvh-70px)] p-3 overflow-auto scroll-hidden">
-          <router-outlet/>
-        </div>
-        <div>
-        </div>
-      </nz-layout>
-    </nz-layout>
-  }
-</div>
+    </app-header>
+
+    <div class="h-[calc(100dvh-70px)] p-3 overflow-auto scroll-hidden w-full max-w-screen-lg mx-auto">
+      <router-outlet/>
+    </div>
+
+    <div>
+    </div>
+  </nz-layout>
+</nz-layout>

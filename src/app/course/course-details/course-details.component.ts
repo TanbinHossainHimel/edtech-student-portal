@@ -3,6 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CourseService} from "../../services/course.service";
 import {AsyncPipe} from "@angular/common";
 import {NzCollapseComponent, NzCollapsePanelComponent} from "ng-zorro-antd/collapse";
+import {VideoPlayerComponent} from "./video-player/video-player.component";
 
 @Component({
   selector: 'app-course-details',
@@ -10,7 +11,8 @@ import {NzCollapseComponent, NzCollapsePanelComponent} from "ng-zorro-antd/colla
   imports: [
     AsyncPipe,
     NzCollapsePanelComponent,
-    NzCollapseComponent
+    NzCollapseComponent,
+    VideoPlayerComponent
   ],
   templateUrl: './course-details.component.html',
   styleUrl: './course-details.component.scss'
