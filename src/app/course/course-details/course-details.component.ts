@@ -2,12 +2,15 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CourseService} from "../../services/course.service";
 import {AsyncPipe} from "@angular/common";
+import {NzCollapseComponent, NzCollapsePanelComponent} from "ng-zorro-antd/collapse";
 
 @Component({
   selector: 'app-course-details',
   standalone: true,
   imports: [
-    AsyncPipe
+    AsyncPipe,
+    NzCollapsePanelComponent,
+    NzCollapseComponent
   ],
   templateUrl: './course-details.component.html',
   styleUrl: './course-details.component.scss'

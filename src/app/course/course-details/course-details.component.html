@@ -10,9 +10,9 @@
 
   <div class="card space-y-3">
 
-    <h1>Title</h1>
+    <h1 class="text-xl">Title</h1>
 
-    <article>Description</article>
+    <p>Description</p>
 
     <p>Teacher: Md. Tanbin Hossain Himel</p>
 
@@ -21,24 +21,26 @@
   </div>
 
 
-  <div class="card space-y-3">
+  <nz-collapse>
 
-    <h2>Module Name</h2>
+    @for (i of [1, 2, 3, 4]; track i){
 
-<!--    <article>Description</article>-->
+      <nz-collapse-panel [nzHeader]="'Module ' + i">
 
-    @for (i of [0, 1, 2]; track i){
+        <div class="space-y-3">
 
-      <div>
+          @for (j of [1, 2, 3, 4]; track j){
 
-        <h3>Content Name</h3>
+           <li class="list-decimal">Content {{j}}</li>
 
-<!--        <article>Content Description</article>-->
+          }
 
-      </div>
+        </div>
+
+      </nz-collapse-panel>
 
     }
 
-  </div>
+  </nz-collapse>
 
 </div>
