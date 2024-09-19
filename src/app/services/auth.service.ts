@@ -20,7 +20,8 @@ export class AuthService {
     return this.http.post<SocialAuthResponse>(environment.apiUrl + '/auth/sign-in', socialUser)
       .pipe(
         tap(console.log),
-        tap((socialAuthResponse) => this.localStorageService.setData('token', socialAuthResponse.toString())),
+        tap((socialAuthResponse) => this.localStorageService.setData('access-token', socialAuthResponse.accessToken)),
+        tap((socialAuthResponse) => this.localStorageService.setData('refresh-token', socialAuthResponse.refreshToken)),
       );
   }
 

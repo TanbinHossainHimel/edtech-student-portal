@@ -1,0 +1,41 @@
+<iframe src="https://www.youtube.com/embed/1ozGKlOzEVc?rel=0&controls=1&enablejsapi=1&origin=http://localhost:4200/" [frameBorder]="0" sandbox='allow-scripts allow-same-origin' allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_p0lDxPqJiM?si=u_3-FPDKrsvX9P62&amp;start=4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="space-y-5">
+
+  <div class="card space-y-3">
+
+    <h1 class="text-xl">Title</h1>
+
+    <p>Description</p>
+
+    <p>Teacher: Md. Tanbin Hossain Himel</p>
+
+    <p>Price: 100 tk</p>
+
+  </div>
+
+
+  <nz-collapse>
+
+    @for (i of [1, 2, 3, 4]; track i){
+
+      <nz-collapse-panel [nzHeader]="'Module ' + i">
+
+        <div class="space-y-3">
+
+          @for (j of [1, 2, 3, 4]; track j){
+
+           <li class="list-decimal">Content {{j}}</li>
+
+          }
+
+        </div>
+
+      </nz-collapse-panel>
+
+    }
+
+  </nz-collapse>
+
+</div>

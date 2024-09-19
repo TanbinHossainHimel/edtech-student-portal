@@ -18,10 +18,12 @@ export class EncryptDecryptService {
   }
 
   public encrypt(data: string): string {
+    return data;
     return CryptoJS.AES.encrypt(data, this.encryptionKey, this.encryptDecryptConfig).toString();
   }
 
   public decrypt(encryptedData: string) {
+    return encryptedData;
     return CryptoJS.AES.decrypt(encryptedData, this.encryptionKey, this.encryptDecryptConfig).toString(CryptoJS.enc.Utf8);
   }
 }
