@@ -23,7 +23,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   socialUser$ = this.socialAuthService.authState;
   auth$ = this.socialUser$.pipe(
     map(authPayload),
-    concatMap((authPayload) => this.authService.signInUserWithGoogle(authPayload))
+    concatMap((authPayload) => this.authService.signIn(authPayload))
   );
 
   ngOnInit() {

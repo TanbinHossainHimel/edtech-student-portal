@@ -1,40 +1,42 @@
-import {Injectable, signal, WritableSignal} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {LocalStorageService} from "./local-storage.service";
-import {Router} from "@angular/router";
-import {SocialAuthService} from "@abacritt/angularx-social-login";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
-import {BehaviorSubject, tap} from "rxjs";
+import {BehaviorSubject, filter, map, Observable, shareReplay, tap} from "rxjs";
+import {User} from "../model/user.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user = new BehaviorSubject(null);
-  isUserAuthorized: WritableSignal<boolean> = signal(true);
+  private localStorage: LocalStorageService = inject(LocalStorageService);
+  private http: HttpClient = inject(HttpClient);
 
-  constructor(private localStorageService: LocalStorageService, private router: Router, private socialAuthService: SocialAuthService, private http: HttpClient) {
-  }
+  private subject = new BehaviorSubject<User | null>(null);
 
-  signInUserWithGoogle(socialUser: SocialAuthPayload) {
-    return this.http.post<SocialAuthResponse>(environment.apiUrl + '/auth/sign-in', socialUser)
+  private user$: Observable<User | null> = this.subject.asObservable();
+
+  isUserLoggedIn$: Observable<boolean> = this.user$.pipe(map(user => !!user));
+  isUserLoggedOut$: Observable<boolean> = this.isUserLoggedIn$.pipe(map(isUserLoggedIn => !isUserLoggedIn));
+
+  signIn(socialUser: SocialAuthPayload) {
+    return this.http.post<AuthResponse>(environment.apiUrl + '/auth/sign-in', socialUser)
       .pipe(
         tap(console.log),
-        tap((socialAuthResponse) => this.localStorageService.setData('access-token', socialAuthResponse.accessToken)),
-        tap((socialAuthResponse) => this.localStorageService.setData('refresh-token', socialAuthResponse.refreshToken)),
+        filter(authResponse => this.isUserAuthorized(authResponse)),
+        tap(authResponse => this.localStorage.setData('token', JSON.stringify(authResponse))),
+        tap(autoResponse => this.subject.next(autoResponse)),
+        shareReplay()
       );
   }
 
-
-  signOutUser() {
-    this.localStorageService.removeData('access-token');
-    this.isUserAuthorized.update(() => this.isAccessTokenAvailable());
-    this.router.navigate(['auth']).then();
-    this.socialAuthService.signOut().then();
+  isUserAuthorized(authResponse: AuthResponse) {
+    return !!authResponse;
   }
 
-  isAccessTokenAvailable() {
-    return !!this.localStorageService.getData('access-token');
+  signOut() {
+    this.subject.next(null);
+    this.localStorage.removeData('token');
   }
 }
 
@@ -47,7 +49,7 @@ interface SocialAuthPayload {
   socialAuthProvider: string;
 }
 
-interface SocialAuthResponse {
+interface AuthResponse {
   accessToken: string;
   refreshToken: string;
 }
