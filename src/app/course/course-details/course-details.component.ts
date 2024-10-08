@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CourseService} from "../../services/course.service";
-import {AsyncPipe} from "@angular/common";
+import {AsyncPipe, JsonPipe} from "@angular/common";
 import {NzCollapseComponent, NzCollapsePanelComponent} from "ng-zorro-antd/collapse";
 import {VideoPlayerComponent} from "../../shared/video-player/video-player.component";
 
@@ -12,7 +12,8 @@ import {VideoPlayerComponent} from "../../shared/video-player/video-player.compo
     AsyncPipe,
     NzCollapsePanelComponent,
     NzCollapseComponent,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    JsonPipe
   ],
   templateUrl: './course-details.component.html',
   styleUrl: './course-details.component.scss'

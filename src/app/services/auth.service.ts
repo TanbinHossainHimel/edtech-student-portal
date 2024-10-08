@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {BehaviorSubject, filter, map, Observable, shareReplay, tap} from "rxjs";
 import {User} from "../model/user.model";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import {User} from "../model/user.model";
 export class AuthService {
   private localStorage: LocalStorageService = inject(LocalStorageService);
   private http: HttpClient = inject(HttpClient);
+  private router: Router = inject(Router);
 
   private userSubject = new BehaviorSubject<User | null>(null);
 
@@ -24,7 +26,8 @@ export class AuthService {
       .pipe(
         tap(console.log),
         filter(this.isUserAuthorized),
-        tap(this.saveToken),
+        tap(this.saveAuthToken),
+        tap(this.redirectToDashboard),
         // tap(autoResponse => this.userSubject.next(autoResponse)),
         shareReplay()
       );
@@ -39,9 +42,13 @@ export class AuthService {
     this.localStorage.removeData('token');
   }
 
-  saveToken = (authResponse: AuthResponse) => {
+  saveAuthToken = (authResponse: AuthResponse) => {
     this.localStorage.setData('access-token', authResponse.accessToken);
     this.localStorage.setData('refresh-token', authResponse.refreshToken);
+  }
+
+  redirectToDashboard = () => {
+    this.router.navigate(['/dashboard']).then();
   }
 
 }

@@ -1,41 +1,46 @@
 <app-video-player [videoId]="''"/>
 
+@if (course$ | async; as course) {
 
-<div class="space-y-5">
+  <div class="space-y-5">
 
-  <div class="card space-y-3">
+    <div class="card space-y-3">
 
-    <h1 class="text-xl">Title</h1>
+      <h1 class="text-xl">{{course.title}}</h1>
 
-    <p>Description</p>
+      <p>{{ course.description }}</p>
 
-    <p>Teacher: Md. Tanbin Hossain Himel</p>
+      <p>Teacher: {{ course.teacher?.user.name }}</p>
 
-    <p>Price: 100 tk</p>
+      <p>Price: {{ course.price }} tk</p>
+
+    </div>
+
+
+    <nz-collapse>
+
+      @for (i of [1, 2, 3, 4]; track i) {
+
+        <nz-collapse-panel [nzHeader]="'Module ' + i">
+
+          <div class="space-y-3">
+
+            @for (j of [1, 2, 3, 4]; track j) {
+
+              <li class="list-decimal">Content {{ j }}</li>
+
+            }
+
+          </div>
+
+        </nz-collapse-panel>
+
+      }
+
+    </nz-collapse>
 
   </div>
 
+}
 
-  <nz-collapse>
 
-    @for (i of [1, 2, 3, 4]; track i){
-
-      <nz-collapse-panel [nzHeader]="'Module ' + i">
-
-        <div class="space-y-3">
-
-          @for (j of [1, 2, 3, 4]; track j){
-
-           <li class="list-decimal">Content {{j}}</li>
-
-          }
-
-        </div>
-
-      </nz-collapse-panel>
-
-    }
-
-  </nz-collapse>
-
-</div>
