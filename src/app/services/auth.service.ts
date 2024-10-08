@@ -12,9 +12,9 @@ export class AuthService {
   private localStorage: LocalStorageService = inject(LocalStorageService);
   private http: HttpClient = inject(HttpClient);
 
-  private subject = new BehaviorSubject<User | null>(null);
+  private userSubject = new BehaviorSubject<User | null>(null);
 
-  private user$: Observable<User | null> = this.subject.asObservable();
+  private user$: Observable<User | null> = this.userSubject.asObservable();
 
   isUserLoggedIn$: Observable<boolean> = this.user$.pipe(map(user => !!user));
   isUserLoggedOut$: Observable<boolean> = this.isUserLoggedIn$.pipe(map(isUserLoggedIn => !isUserLoggedIn));
@@ -23,21 +23,27 @@ export class AuthService {
     return this.http.post<AuthResponse>(environment.apiUrl + '/auth/sign-in', socialUser)
       .pipe(
         tap(console.log),
-        filter(authResponse => this.isUserAuthorized(authResponse)),
-        tap(authResponse => this.localStorage.setData('token', JSON.stringify(authResponse))),
-        tap(autoResponse => this.subject.next(autoResponse)),
+        filter(this.isUserAuthorized),
+        tap(this.saveToken),
+        // tap(autoResponse => this.userSubject.next(autoResponse)),
         shareReplay()
       );
   }
 
-  isUserAuthorized(authResponse: AuthResponse) {
+  isUserAuthorized = (authResponse: AuthResponse) => {
     return !!authResponse;
   }
 
   signOut() {
-    this.subject.next(null);
+    this.userSubject.next(null);
     this.localStorage.removeData('token');
   }
+
+  saveToken = (authResponse: AuthResponse) => {
+    this.localStorage.setData('access-token', authResponse.accessToken);
+    this.localStorage.setData('refresh-token', authResponse.refreshToken);
+  }
+
 }
 
 

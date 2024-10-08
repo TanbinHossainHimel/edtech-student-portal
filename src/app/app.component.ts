@@ -20,13 +20,11 @@ import {DisableShortcutsDirective} from "./directive/disable-shortcuts.directive
 })
 export class AppComponent implements OnInit {
   isProduction: boolean = environment.isProduction;
-  isUserAuthorized!: WritableSignal<boolean>;
   isCollapsed: boolean = true;
 
   constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
-    this.isUserAuthorized = this.authService.isUserAuthorized;
   }
 }
