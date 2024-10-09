@@ -1,49 +1,53 @@
 @if (course$ | async; as course) {
 
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
 
-  <div class="space-y-5">
-
-    <div class="h-[500px]">
-      <app-video-player [videoId]="''"/>
-    </div>
-
-    <div class="card space-y-3">
-
-      <h1 class="text-xl">{{ course.title }}</h1>
-
-      <p>{{ course.description }}</p>
-
-      <p>Teacher: {{ course.teacher.user.name }}</p>
-
-      <p>Price: {{ course.price }} tk</p>
-
-      <button nz-button nzType="primary">Buy Now</button>
-
-    </div>
-
-    <nz-collapse>
-
-      @for (module of course.modules; track module.id) {
-
-        <nz-collapse-panel [nzHeader]="module.title">
-
-          <div class="space-y-3">
-
-            @for (content of module.contents; track content) {
-
-              <li class="list-decimal">{{ content.title }}</li>
-
-            }
-
-          </div>
-
-        </nz-collapse-panel>
-
-      }
-
-    </nz-collapse>
-
+  <div class="h-[200px] md:h-[420px] lg:h-[280px]">
+    <app-video-player [videoId]="''"/>
   </div>
+
+
+    <div class="space-y-5">
+
+      <div class="card space-y-3">
+
+        <h1 class="text-xl">{{ course.title }}</h1>
+
+        <p>{{ course.description }}</p>
+
+        <p>Teacher: {{ course.teacher.user.name }}</p>
+
+        <p>Price: {{ course.price }} tk</p>
+
+        <button nz-button nzType="primary" (click)="onClickBuyNow()">Buy Now</button>
+
+      </div>
+
+      <nz-collapse>
+
+        @for (module of course.modules; track module.id) {
+
+          <nz-collapse-panel [nzHeader]="module.title">
+
+            <div class="space-y-3">
+
+              @for (content of module.contents; track content) {
+
+                <li class="list-decimal">{{ content.title }}</li>
+
+              }
+
+            </div>
+
+          </nz-collapse-panel>
+
+        }
+
+      </nz-collapse>
+
+    </div>
+
+</div>
 
 }
 
