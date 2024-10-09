@@ -1,33 +1,37 @@
-<app-video-player [videoId]="''"/>
-
 @if (course$ | async; as course) {
+
 
   <div class="space-y-5">
 
+    <div class="h-[500px]">
+      <app-video-player [videoId]="''"/>
+    </div>
+
     <div class="card space-y-3">
 
-      <h1 class="text-xl">{{course.title}}</h1>
+      <h1 class="text-xl">{{ course.title }}</h1>
 
       <p>{{ course.description }}</p>
 
-      <p>Teacher: {{ course.teacher?.user.name }}</p>
+      <p>Teacher: {{ course.teacher.user.name }}</p>
 
       <p>Price: {{ course.price }} tk</p>
 
-    </div>
+      <button nz-button nzType="primary">Buy Now</button>
 
+    </div>
 
     <nz-collapse>
 
-      @for (i of [1, 2, 3, 4]; track i) {
+      @for (module of course.modules; track module.id) {
 
-        <nz-collapse-panel [nzHeader]="'Module ' + i">
+        <nz-collapse-panel [nzHeader]="module.title">
 
           <div class="space-y-3">
 
-            @for (j of [1, 2, 3, 4]; track j) {
+            @for (content of module.contents; track content) {
 
-              <li class="list-decimal">Content {{ j }}</li>
+              <li class="list-decimal">{{ content.title }}</li>
 
             }
 

@@ -4,6 +4,7 @@ import {CourseService} from "../../services/course.service";
 import {AsyncPipe, JsonPipe} from "@angular/common";
 import {NzCollapseComponent, NzCollapsePanelComponent} from "ng-zorro-antd/collapse";
 import {VideoPlayerComponent} from "../../shared/video-player/video-player.component";
+import {NzButtonComponent} from "ng-zorro-antd/button";
 
 @Component({
   selector: 'app-course-details',
@@ -13,7 +14,8 @@ import {VideoPlayerComponent} from "../../shared/video-player/video-player.compo
     NzCollapsePanelComponent,
     NzCollapseComponent,
     VideoPlayerComponent,
-    JsonPipe
+    JsonPipe,
+    NzButtonComponent
   ],
   templateUrl: './course-details.component.html',
   styleUrl: './course-details.component.scss'

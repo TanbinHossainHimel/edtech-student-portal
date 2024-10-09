@@ -1,4 +1,5 @@
 import {Teacher} from "./teacher.model";
+import {Module} from "./module.model";
 
 export interface Course {
   id: number;
@@ -11,9 +12,11 @@ export interface Course {
   discountType: DiscountType;
   teacherId: number;
   teacher: Teacher;
+  modules: Module[];
 }
 
-enum DiscountType {
+
+export enum DiscountType {
   FLAT = 'FLAT',
   PERCENTAGE = 'PERCENTAGE',
 }

@@ -14,6 +14,6 @@ export class CourseService {
   }
 
   findOne(id: number) {
-    return this.http.get<Partial<Course>>(`${environment.apiUrl}/course/${id}`);
+    return this.http.get<Course>(`${environment.apiUrl}/course/${id}`);
   }
 }
